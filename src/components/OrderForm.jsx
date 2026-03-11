@@ -116,28 +116,11 @@ export default function OrderForm({ onOrderSuccess, onGoHome }) {
       setFormData(initialForm);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 401) {
-        const fallbackResponse = {
-          id: `mock-${Date.now()}`,
-          createdAt: new Date().toISOString(),
-          source: 'local-fallback',
-        };
-
-        console.warn('Reqres API key geçersiz, local fallback kullanıldı.');
-        console.log('Sipariş özeti:', fallbackResponse);
-        onOrderSuccess({
-          ...fallbackResponse,
-          orderPayload: formData,
-          pricing: {
-            basePrice,
-            toppingsTotal,
-            totalPrice,
-          },
-        });
-        setFormData(initialForm);
+        setRequestError('Reqres API isteği 401 döndürdü: x-api-key reddedildi. Bu, servis taraflı bir doğrulama sorunu.');
       } else {
         setRequestError('İnternet bağlantısı veya sunucu hatası oluştu. Lütfen tekrar dene.');
-        console.error('Sipariş gönderilemedi:', error);
       }
+      console.error('Sipariş gönderilemedi:', error);
     } finally {
       setIsSubmitting(false);
     }
