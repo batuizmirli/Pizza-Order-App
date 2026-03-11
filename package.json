@@ -1,5 +1,5 @@
 {
-  "name": "cypress-pizza-order",
+  "name": "pizza-order-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
