@@ -3,12 +3,19 @@ describe('Pizza Sipariş Formu', () => {
     cy.visit('/');
   });
 
+  const goToOrderForm = () => {
+    cy.get('[data-cy="hero-order-btn"]').click();
+    cy.get('[data-cy="name-input"]').should('be.visible');
+  };
+
   it('inputa metin girer', () => {
+    goToOrderForm();
     cy.get('[data-cy="name-input"]').type('Batu');
     cy.get('[data-cy="name-input"]').should('have.value', 'Batu');
   });
 
   it('birden fazla malzeme seçebilir', () => {
+    goToOrderForm();
     cy.contains('label', 'Pepperoni').find('[data-cy="topping-option"]').check();
     cy.contains('label', 'Mısır').find('[data-cy="topping-option"]').check();
     cy.contains('label', 'Zeytin').find('[data-cy="topping-option"]').check();
@@ -26,6 +33,7 @@ describe('Pizza Sipariş Formu', () => {
       },
     }).as('createPizza');
 
+    goToOrderForm();
     cy.get('[data-cy="name-input"]').type('Batu');
     cy.contains('label', 'Büyük').find('[data-cy="size-option"]').check();
 
@@ -43,6 +51,7 @@ describe('Pizza Sipariş Formu', () => {
   });
 
   it('eksik malzemede butonu disabled tutar', () => {
+    goToOrderForm();
     cy.get('[data-cy="name-input"]').type('Batu');
     cy.contains('label', 'Orta').find('[data-cy="size-option"]').check();
     cy.contains('label', 'Pepperoni').find('[data-cy="topping-option"]').check();
@@ -58,6 +67,7 @@ describe('Pizza Sipariş Formu', () => {
       forceNetworkError: true,
     }).as('createPizzaFail');
 
+    goToOrderForm();
     cy.get('[data-cy="name-input"]').type('Batu');
     cy.contains('label', 'Büyük').find('[data-cy="size-option"]').check();
 

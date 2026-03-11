@@ -32,7 +32,7 @@ const sizePrices = {
 
 const toppingPrice = 25;
 
-export default function OrderForm({ onOrderSuccess }) {
+export default function OrderForm({ onOrderSuccess, onGoHome }) {
   const [formData, setFormData] = useState(initialForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [requestError, setRequestError] = useState('');
@@ -113,12 +113,29 @@ export default function OrderForm({ onOrderSuccess }) {
 
   return (
     <main id="order-form" className="order-page">
-      <section className="order-header">
+      <header className="page-topbar">
+        <h1>Teknolojik Yemekler</h1>
+        <nav className="breadcrumb breadcrumb-top" aria-label="Sayfa yolu">
+          <a
+            href="#home"
+            onClick={(event) => {
+              event.preventDefault();
+              onGoHome();
+            }}
+          >
+            Anasayfa
+          </a>
+          <span>-</span>
+          <a href="#order-form" aria-current="page">Sipariş Oluştur</a>
+        </nav>
+      </header>
+
+      <section className="order-header page-content-wrap">
         <h2>Pizza Sipariş Formu</h2>
         <p>Boyutunu seç, malzemeleri işaretle, siparişi tamamla.</p>
       </section>
 
-      <section className="order-summary" data-cy="order-summary">
+      <section className="order-summary page-content-wrap" data-cy="order-summary">
         <h3>Canlı Sipariş Özeti</h3>
         <p><strong>İsim:</strong> {formData.isim || '-'}</p>
         <p><strong>Boyut:</strong> {formData.boyut || '-'}</p>
@@ -127,7 +144,7 @@ export default function OrderForm({ onOrderSuccess }) {
         <p><strong>Toplam:</strong> ₺{totalPrice}</p>
       </section>
 
-      <form className="order-form" onSubmit={handleSubmit}>
+      <form className="order-form page-content-wrap" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="isim">İsim</label>
           <input

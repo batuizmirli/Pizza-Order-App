@@ -5,17 +5,29 @@ import OrderConfirmation from './components/OrderConfirmation';
 import './App.css';
 
 function App() {
+  const [page, setPage] = useState('home');
   const [orderResponse, setOrderResponse] = useState(null);
+
+  const handleOrderSuccess = (response) => {
+    setOrderResponse(response);
+    setPage('success');
+  };
+
+  if (page === 'home') {
+    return <Home onStartOrder={() => setPage('form')} />;
+  }
 
   return (
     <>
-      {!orderResponse ? (
-        <>
-          <Home />
-          <OrderForm onOrderSuccess={setOrderResponse} />
-        </>
+      {page === 'form' ? (
+        <OrderForm onOrderSuccess={handleOrderSuccess} onGoHome={() => setPage('home')} />
       ) : (
-        <OrderConfirmation orderResponse={orderResponse} onCreateNewOrder={() => setOrderResponse(null)} />
+        <OrderConfirmation
+          orderResponse={orderResponse}
+          onCreateNewOrder={() => setPage('form')}
+          onGoHome={() => setPage('home')}
+          onGoForm={() => setPage('form')}
+        />
       )}
     </>
   );
