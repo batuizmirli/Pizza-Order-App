@@ -1,42 +1,126 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.hero {
+  background: linear-gradient(130deg, #ce2829, #292929);
+  color: #faf7f2;
+  padding: 5rem 1rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.hero-brand {
+  font-family: 'Satisfy', cursive;
+  color: #fdc913;
+  font-size: 1.6rem;
+  margin: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hero h1 {
+  margin: 0.6rem auto;
+  max-width: 760px;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.hero-subtitle {
+  color: #faf7f2;
+  opacity: 0.95;
+  margin-bottom: 2rem;
 }
 
-.card {
-  padding: 2em;
+.hero-cta {
+  background-color: #fdc913;
+  color: #292929;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
 }
 
-.read-the-docs {
-  color: #888;
+.order-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.order-header h2 {
+  margin: 0;
+  color: #292929;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.order-form {
+  margin-top: 1.2rem;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e6dfd6;
+  padding: 1.2rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label,
+.form-group legend {
+  color: #292929;
+  font-weight: 600;
+}
+
+input[type='text'],
+textarea {
+  width: 100%;
+  margin-top: 0.4rem;
+  border: 1px solid #c8c0b7;
+  border-radius: 8px;
+  padding: 0.7rem;
+  font: inherit;
+}
+
+.inline-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.toppings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.form-error {
+  color: #ce2829;
+  margin: 0.4rem 0 0.8rem;
+  font-size: 0.95rem;
+}
+
+button {
+  background-color: #ce2829;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.confirmation {
+  min-height: 70vh;
+  display: grid;
+  place-content: center;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.confirmation-card {
+  border: 1px solid #dfd7cf;
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }

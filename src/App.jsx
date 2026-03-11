@@ -1,10 +1,24 @@
 import { useState } from 'react';
-import Login from './components/Login';
-import Success from './components/Success';
+import Home from './components/Home';
+import OrderForm from './components/OrderForm';
+import OrderConfirmation from './components/OrderConfirmation';
+import './App.css';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  return loggedIn ? <Success /> : <Login onSuccess={() => setLoggedIn(true)} />;
+  const [orderResponse, setOrderResponse] = useState(null);
+
+  return (
+    <>
+      {!orderResponse ? (
+        <>
+          <Home />
+          <OrderForm onOrderSuccess={setOrderResponse} />
+        </>
+      ) : (
+        <OrderConfirmation orderResponse={orderResponse} onCreateNewOrder={() => setOrderResponse(null)} />
+      )}
+    </>
+  );
 }
 
 export default App;
